@@ -14,7 +14,7 @@ using System.Web;
 
 namespace Expense.Tracker.Web.Models
 {
-    [LuisModel("1ce4fe04-3f7e-4a0f-a055-fcd41f5048be", "8a2b0aa13fb34cec9430833e5a4b6122")]
+    [LuisModel("1ce4fe04-3f7e-4a0f-a055-fcd41f5048be", "sadsadsaasd")]
     [Serializable]
     public class UnAuthorizedBotModel: LuisDialog<object>
     {
