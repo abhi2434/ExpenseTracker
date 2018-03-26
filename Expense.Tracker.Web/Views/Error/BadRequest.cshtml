@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "403 - Bad Request";
+    ViewBag.PageDescription = "It seems you have navigated to a wrong link. Ensure you correct the link or search to continue using the site. If you are sure this should work, feel free to contact system admin.";
+
+}
+<link href="~/Content/themes30/pages/css/error.min.css" rel="stylesheet" />
+
+    <div class="row">
+        <div class="col-md-12 page-404-3">
+            <div class="number font-green"> 403 </div>
+            <div class="details">
+                <h3>Oops! This is not a valid request</h3>
+                <p>
+                    Please ensure you clicked from a vaild portal or used a valid link to navigate to the page.
+                    <br />
+                    <a href="@Url.Action("Index", "Dashboard")"> Return home </a> or try the search bar below.
+                </p>
+                <form action="#">
+                    <div class="input-group input-medium">
+                        <input type="text" class="form-control" placeholder="keyword...">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn green">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <!-- /input-group -->
+                </form>
+            </div>
+        </div>
+    </div>

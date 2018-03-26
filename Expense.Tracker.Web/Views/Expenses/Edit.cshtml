@@ -1,0 +1,56 @@
+﻿@model Expense.Tracker.Data.EntityModel.Expens
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.PageDescription = "You can edit your expenses such that you are in track of your spending";
+} 
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-body">
+        @Html.HiddenFor(model => model.ExpenseId)
+        @Html.HiddenFor(model => model.AutoAudit_CreatedDate)
+        @Html.HiddenFor(model => model.AutoAudit_CreatedBy) 
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.AttachmentPath)
+
+        <div class="form-group">
+            <img src='@(Model.User.ProfilePic == null ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image": Model.User.ProfilePic)' class="profile-image" />
+        </div>
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="ExpenseTitle" name="ExpenseTitle" value="@Model.ExpenseTitle" />
+            <label for="ExpenseTitle">Expense head</label>
+            @Html.ValidationMessageFor(model => model.ExpenseTitle, null, new { @class = "help-block" })
+            <span class="help-block">Specify the title of the expense which is made...</span>
+        </div>
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <textarea class="form-control" id="ExpenseDetail" name="ExpenseDetail" rows="3">@Model.ExpenseDetail</textarea>
+            <label for="ExpenseDetail">Expense Details</label>
+            @Html.ValidationMessageFor(model => model.ExpenseDetail, null, new { @class = "help-block" })
+            <span class="help-block">Describe the details of the expense...</span>
+        </div>
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <label for="ExpenseTimeStamp">Expense Date time</label>
+            <input type="date" class="form-control" id="ExpenseTimeStamp" name="ExpenseTimeStamp" value="@Model.ExpenseTimeStamp.Value.ToString("yyyy-MM-dd")" /> 
+            @Html.ValidationMessageFor(model => model.ExpenseTimeStamp, null, new { @class = "help-block" })
+            <span class="help-block">Specify the timestamp when the expense is made...</span>
+        </div>
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <label for="ExpenseAmount">Expense Amount</label>
+            <input type="number" class="form-control" id="ExpenseAmount" name="ExpenseAmount" value="@Model.ExpenseAmount" />
+            @Html.ValidationMessageFor(model => model.ExpenseAmount, null, new { @class = "help-block" })
+            <span class="help-block">Expense value...</span>
+        </div> 
+
+        @if (!string.IsNullOrEmpty(Model.AttachmentPath))
+        {
+            <a href="@Model.AttachmentPath" class="btn btn-primary">Download Attachment</a>
+        }
+        <div class="form-actions no-color">
+            <input type="submit" value="Create" class="btn blue" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn default" })
+        </div>
+    </div>
+}

@@ -1,0 +1,716 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ExpenseTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
+          <Property Name="ParentType" Type="nvarchar" MaxLength="200" />
+          <Property Name="CommentTitle" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CommentText" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="AutoAudit_CreatedDate" Type="datetime" />
+          <Property Name="AutoAudit_CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_ModifiedDate" Type="datetime" />
+          <Property Name="AutoAudit_ModifiedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_RowVersion" Type="int" />
+        </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="ConfigurationId" />
+          </Key>
+          <Property Name="ConfigurationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ConfigKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="ConfigVal" Type="nvarchar(max)" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
+          <Property Name="ParentEntity" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="LastUpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Expenses">
+          <Key>
+            <PropertyRef Name="ExpenseId" />
+          </Key>
+          <Property Name="ExpenseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ExpenseTitle" Type="nvarchar" MaxLength="200" />
+          <Property Name="ExpenseDetail" Type="nvarchar(max)" />
+          <Property Name="ExpenseTimeStamp" Type="datetime" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="AutoAudit_CreatedDate" Type="datetime" />
+          <Property Name="AutoAudit_CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_ModifiedDate" Type="datetime" />
+          <Property Name="AutoAudit_ModifiedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_RowVersion" Type="int" />
+          <Property Name="ExpenseAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AttachmentPath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="FeatureId" />
+          </Key>
+          <Property Name="FeatureId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FeatureName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentFeatureId" Type="uniqueidentifier" />
+          <Property Name="Controller" Type="nvarchar(max)" />
+          <Property Name="Action" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="ORDERING" Type="int" />
+          <Property Name="IsListing" Type="bit" />
+          <Property Name="AutoAudit_CreatedDate" Type="datetime" />
+          <Property Name="AutoAudit_CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_ModifiedDate" Type="datetime" />
+          <Property Name="AutoAudit_ModifiedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_RowVersion" Type="int" />
+          <Property Name="FeatureGroup" Type="nvarchar" MaxLength="200" />
+          <Property Name="FeatureStyle" Type="nvarchar" MaxLength="200" />
+          <Property Name="FeatureBadgeStyle" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="PickListItem">
+          <Key>
+            <PropertyRef Name="PickListItemId" />
+          </Key>
+          <Property Name="PickListItemId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DisplayText" Type="nvarchar" MaxLength="500" />
+          <Property Name="DisplayCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="ParentTypeCode" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsEditAllowed" Type="bit" Nullable="false" />
+          <Property Name="AutoAudit_CreatedDate" Type="datetime" />
+          <Property Name="AutoAudit_CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_ModifiedDate" Type="datetime" />
+          <Property Name="AutoAudit_ModifiedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_RowVersion" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="RoleFeature">
+          <Key>
+            <PropertyRef Name="RoleFeatureId" />
+          </Key>
+          <Property Name="RoleFeatureId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FeatureId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AutoAudit_CreatedDate" Type="datetime" />
+          <Property Name="AutoAudit_CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_ModifiedDate" Type="datetime" />
+          <Property Name="AutoAudit_ModifiedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_RowVersion" Type="int" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleId" />
+          </Key>
+          <Property Name="UserRoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AutoAudit_CreatedDate" Type="datetime" />
+          <Property Name="AutoAudit_CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_ModifiedDate" Type="datetime" />
+          <Property Name="AutoAudit_ModifiedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_RowVersion" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserFullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserContactNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" />
+          <Property Name="ForgetPasswordCode" Type="uniqueidentifier" />
+          <Property Name="LAST_ACCESS_IP" Type="nvarchar" MaxLength="50" />
+          <Property Name="AutoAudit_CreatedDate" Type="datetime" />
+          <Property Name="AutoAudit_CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_ModifiedDate" Type="datetime" />
+          <Property Name="AutoAudit_ModifiedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AutoAudit_RowVersion" Type="int" />
+          <Property Name="ProfilePic" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Expenses_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feature_Feature">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="0..1" />
+          <End Role="Feature1" Type="Self.Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="FeatureId" />
+            </Principal>
+            <Dependent Role="Feature1">
+              <PropertyRef Name="ParentFeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleFeature_Feature">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+          <End Role="RoleFeature" Type="Self.RoleFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="FeatureId" />
+            </Principal>
+            <Dependent Role="RoleFeature">
+              <PropertyRef Name="FeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleFeature_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="RoleFeature" Type="Self.RoleFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="RoleFeature">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_GetMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pRoleId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="pUserId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <EntityContainer Name="ExpenseTrackerModelStoreContainer">
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expenses" EntityType="Self.Expenses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PickListItem" EntityType="Self.PickListItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleFeature" EntityType="Self.RoleFeature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Expenses_User" Association="Self.FK_Expenses_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feature_Feature" Association="Self.FK_Feature_Feature">
+            <End Role="Feature" EntitySet="Feature" />
+            <End Role="Feature1" EntitySet="Feature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleFeature_Feature" Association="Self.FK_RoleFeature_Feature">
+            <End Role="Feature" EntitySet="Feature" />
+            <End Role="RoleFeature" EntitySet="RoleFeature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleFeature_Role" Association="Self.FK_RoleFeature_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleFeature" EntitySet="RoleFeature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExpenseTrackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Guid" Nullable="false" />
+          <Property Name="ParentId" Type="Guid" />
+          <Property Name="ParentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CommentTitle" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CommentText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="AutoAudit_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_RowVersion" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="ConfigurationId" />
+          </Key>
+          <Property Name="ConfigurationId" Type="Guid" Nullable="false" />
+          <Property Name="ConfigKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ConfigVal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Guid" />
+          <Property Name="ParentEntity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="FeatureId" />
+          </Key>
+          <Property Name="FeatureId" Type="Guid" Nullable="false" />
+          <Property Name="FeatureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentFeatureId" Type="Guid" />
+          <Property Name="Controller" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="ORDERING" Type="Int32" />
+          <Property Name="IsListing" Type="Boolean" />
+          <Property Name="AutoAudit_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_RowVersion" Type="Int32" />
+          <NavigationProperty Name="Feature1" Relationship="Self.FK_Feature_Feature" FromRole="Feature" ToRole="Feature1" />
+          <NavigationProperty Name="Feature2" Relationship="Self.FK_Feature_Feature" FromRole="Feature1" ToRole="Feature" />
+          <NavigationProperty Name="RoleFeatures" Relationship="Self.FK_RoleFeature_Feature" FromRole="Feature" ToRole="RoleFeature" />
+          <Property Name="FeatureGroup" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FeatureStyle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FeatureBadgeStyle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PickListItem">
+          <Key>
+            <PropertyRef Name="PickListItemId" />
+          </Key>
+          <Property Name="PickListItemId" Type="Guid" Nullable="false" />
+          <Property Name="DisplayText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="ParentTypeCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsEditAllowed" Type="Boolean" Nullable="false" />
+          <Property Name="AutoAudit_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_RowVersion" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RoleFeatures" Relationship="Self.FK_RoleFeature_Role" FromRole="Role" ToRole="RoleFeature" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="RoleFeature">
+          <Key>
+            <PropertyRef Name="RoleFeatureId" />
+          </Key>
+          <Property Name="RoleFeatureId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="FeatureId" Type="Guid" Nullable="false" />
+          <Property Name="AutoAudit_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_RowVersion" Type="Int32" />
+          <NavigationProperty Name="Feature" Relationship="Self.FK_RoleFeature_Feature" FromRole="RoleFeature" ToRole="Feature" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_RoleFeature_Role" FromRole="RoleFeature" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleId" />
+          </Key>
+          <Property Name="UserRoleId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="AutoAudit_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_RowVersion" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserRole_User" FromRole="UserRole" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ActivationCode" Type="Guid" />
+          <Property Name="ForgetPasswordCode" Type="Guid" />
+          <Property Name="LAST_ACCESS_IP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_RowVersion" Type="Int32" />
+          <Property Name="ProfilePic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_User" FromRole="Users" ToRole="UserRole" />
+          <NavigationProperty Name="Expenses" Relationship="ExpenseTrackerModel.FK_Expenses_User" FromRole="User" ToRole="Expens" />
+        </EntityType>
+        <Association Name="FK_Feature_Feature">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="0..1" />
+          <End Role="Feature1" Type="Self.Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="FeatureId" />
+            </Principal>
+            <Dependent Role="Feature1">
+              <PropertyRef Name="ParentFeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleFeature_Feature">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+          <End Role="RoleFeature" Type="Self.RoleFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="FeatureId" />
+            </Principal>
+            <Dependent Role="RoleFeature">
+              <PropertyRef Name="FeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleFeature_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="RoleFeature" Type="Self.RoleFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="RoleFeature">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExpenseTrackerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Configurations" EntityType="Self.Configuration" />
+          <EntitySet Name="Features" EntityType="Self.Feature" />
+          <EntitySet Name="PickListItems" EntityType="Self.PickListItem" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="RoleFeatures" EntityType="Self.RoleFeature" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Feature_Feature" Association="Self.FK_Feature_Feature">
+            <End Role="Feature" EntitySet="Features" />
+            <End Role="Feature1" EntitySet="Features" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleFeature_Feature" Association="Self.FK_RoleFeature_Feature">
+            <End Role="Feature" EntitySet="Features" />
+            <End Role="RoleFeature" EntitySet="RoleFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleFeature_Role" Association="Self.FK_RoleFeature_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="RoleFeature" EntitySet="RoleFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <FunctionImport Name="usp_GetMenu" EntitySet="Features" ReturnType="Collection(ExpenseTrackerModel.Feature)">
+            <Parameter Name="pRoleId" Mode="In" Type="Guid" />
+            <Parameter Name="pUserId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <EntitySet Name="Expenses" EntityType="ExpenseTrackerModel.Expens" />
+          <AssociationSet Name="FK_Expenses_User" Association="ExpenseTrackerModel.FK_Expenses_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Expens" EntitySet="Expenses" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="usp_GetMenu_Result">
+          <Property Type="Guid" Name="FeatureId" Nullable="false" />
+          <Property Type="String" Name="FeatureName" Nullable="false" MaxLength="50" />
+          <Property Type="Guid" Name="ParentFeatureId" Nullable="true" />
+          <Property Type="String" Name="Controller" Nullable="true" />
+          <Property Type="String" Name="Action" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="Active" Nullable="true" />
+          <Property Type="Int32" Name="ORDERING" Nullable="true" />
+          <Property Type="Boolean" Name="IsListing" Nullable="true" />
+          <Property Type="DateTime" Name="AutoAudit_CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="AutoAudit_CreatedBy" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="AutoAudit_ModifiedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="AutoAudit_ModifiedBy" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="AutoAudit_RowVersion" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Expens">
+          <Key>
+            <PropertyRef Name="ExpenseId" />
+          </Key>
+          <Property Name="ExpenseId" Type="Guid" Nullable="false" />
+          <Property Name="ExpenseTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ExpenseDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExpenseTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="AutoAudit_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="AutoAudit_ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AutoAudit_RowVersion" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="ExpenseTrackerModel.FK_Expenses_User" FromRole="Expens" ToRole="User" />
+          <Property Name="ExpenseAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AttachmentPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Expenses_User">
+          <End Type="ExpenseTrackerModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="ExpenseTrackerModel.Expens" Role="Expens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Expens">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExpenseTrackerModelStoreContainer" CdmEntityContainer="ExpenseTrackerEntities">
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="ExpenseTrackerModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ParentType" ColumnName="ParentType" />
+                <ScalarProperty Name="CommentTitle" ColumnName="CommentTitle" />
+                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AutoAudit_CreatedDate" ColumnName="AutoAudit_CreatedDate" />
+                <ScalarProperty Name="AutoAudit_CreatedBy" ColumnName="AutoAudit_CreatedBy" />
+                <ScalarProperty Name="AutoAudit_ModifiedDate" ColumnName="AutoAudit_ModifiedDate" />
+                <ScalarProperty Name="AutoAudit_ModifiedBy" ColumnName="AutoAudit_ModifiedBy" />
+                <ScalarProperty Name="AutoAudit_RowVersion" ColumnName="AutoAudit_RowVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="ExpenseTrackerModel.Configuration">
+              <MappingFragment StoreEntitySet="Configuration">
+                <ScalarProperty Name="ConfigurationId" ColumnName="ConfigurationId" />
+                <ScalarProperty Name="ConfigKey" ColumnName="ConfigKey" />
+                <ScalarProperty Name="ConfigVal" ColumnName="ConfigVal" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ParentEntity" ColumnName="ParentEntity" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastUpdatedOn" ColumnName="LastUpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="ExpenseTrackerModel.Feature">
+              <MappingFragment StoreEntitySet="Feature">
+                <ScalarProperty Name="FeatureBadgeStyle" ColumnName="FeatureBadgeStyle" />
+                <ScalarProperty Name="FeatureStyle" ColumnName="FeatureStyle" />
+                <ScalarProperty Name="FeatureGroup" ColumnName="FeatureGroup" />
+                <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+                <ScalarProperty Name="FeatureName" ColumnName="FeatureName" />
+                <ScalarProperty Name="ParentFeatureId" ColumnName="ParentFeatureId" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ORDERING" ColumnName="ORDERING" />
+                <ScalarProperty Name="IsListing" ColumnName="IsListing" />
+                <ScalarProperty Name="AutoAudit_CreatedDate" ColumnName="AutoAudit_CreatedDate" />
+                <ScalarProperty Name="AutoAudit_CreatedBy" ColumnName="AutoAudit_CreatedBy" />
+                <ScalarProperty Name="AutoAudit_ModifiedDate" ColumnName="AutoAudit_ModifiedDate" />
+                <ScalarProperty Name="AutoAudit_ModifiedBy" ColumnName="AutoAudit_ModifiedBy" />
+                <ScalarProperty Name="AutoAudit_RowVersion" ColumnName="AutoAudit_RowVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PickListItems">
+            <EntityTypeMapping TypeName="ExpenseTrackerModel.PickListItem">
+              <MappingFragment StoreEntitySet="PickListItem">
+                <ScalarProperty Name="PickListItemId" ColumnName="PickListItemId" />
+                <ScalarProperty Name="DisplayText" ColumnName="DisplayText" />
+                <ScalarProperty Name="DisplayCode" ColumnName="DisplayCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ParentTypeCode" ColumnName="ParentTypeCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ExpenseTrackerModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IsEditAllowed" ColumnName="IsEditAllowed" />
+                <ScalarProperty Name="AutoAudit_CreatedDate" ColumnName="AutoAudit_CreatedDate" />
+                <ScalarProperty Name="AutoAudit_CreatedBy" ColumnName="AutoAudit_CreatedBy" />
+                <ScalarProperty Name="AutoAudit_ModifiedDate" ColumnName="AutoAudit_ModifiedDate" />
+                <ScalarProperty Name="AutoAudit_ModifiedBy" ColumnName="AutoAudit_ModifiedBy" />
+                <ScalarProperty Name="AutoAudit_RowVersion" ColumnName="AutoAudit_RowVersion" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleFeatures">
+            <EntityTypeMapping TypeName="ExpenseTrackerModel.RoleFeature">
+              <MappingFragment StoreEntitySet="RoleFeature">
+                <ScalarProperty Name="RoleFeatureId" ColumnName="RoleFeatureId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+                <ScalarProperty Name="AutoAudit_CreatedDate" ColumnName="AutoAudit_CreatedDate" />
+                <ScalarProperty Name="AutoAudit_CreatedBy" ColumnName="AutoAudit_CreatedBy" />
+                <ScalarProperty Name="AutoAudit_ModifiedDate" ColumnName="AutoAudit_ModifiedDate" />
+                <ScalarProperty Name="AutoAudit_ModifiedBy" ColumnName="AutoAudit_ModifiedBy" />
+                <ScalarProperty Name="AutoAudit_RowVersion" ColumnName="AutoAudit_RowVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="ExpenseTrackerModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="AutoAudit_CreatedDate" ColumnName="AutoAudit_CreatedDate" />
+                <ScalarProperty Name="AutoAudit_CreatedBy" ColumnName="AutoAudit_CreatedBy" />
+                <ScalarProperty Name="AutoAudit_ModifiedDate" ColumnName="AutoAudit_ModifiedDate" />
+                <ScalarProperty Name="AutoAudit_ModifiedBy" ColumnName="AutoAudit_ModifiedBy" />
+                <ScalarProperty Name="AutoAudit_RowVersion" ColumnName="AutoAudit_RowVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ExpenseTrackerModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserFullName" ColumnName="UserFullName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserContactNumber" ColumnName="UserContactNumber" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="ForgetPasswordCode" ColumnName="ForgetPasswordCode" />
+                <ScalarProperty Name="LAST_ACCESS_IP" ColumnName="LAST_ACCESS_IP" />
+                <ScalarProperty Name="AutoAudit_CreatedDate" ColumnName="AutoAudit_CreatedDate" />
+                <ScalarProperty Name="AutoAudit_CreatedBy" ColumnName="AutoAudit_CreatedBy" />
+                <ScalarProperty Name="AutoAudit_ModifiedDate" ColumnName="AutoAudit_ModifiedDate" />
+                <ScalarProperty Name="AutoAudit_ModifiedBy" ColumnName="AutoAudit_ModifiedBy" />
+                <ScalarProperty Name="AutoAudit_RowVersion" ColumnName="AutoAudit_RowVersion" />
+                <ScalarProperty Name="ProfilePic" ColumnName="ProfilePic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetMenu" FunctionName="ExpenseTrackerModel.Store.usp_GetMenu">
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Expenses">
+            <EntityTypeMapping TypeName="ExpenseTrackerModel.Expens">
+              <MappingFragment StoreEntitySet="Expenses">
+                <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
+                <ScalarProperty Name="ExpenseAmount" ColumnName="ExpenseAmount" />
+                <ScalarProperty Name="AutoAudit_RowVersion" ColumnName="AutoAudit_RowVersion" />
+                <ScalarProperty Name="AutoAudit_ModifiedBy" ColumnName="AutoAudit_ModifiedBy" />
+                <ScalarProperty Name="AutoAudit_ModifiedDate" ColumnName="AutoAudit_ModifiedDate" />
+                <ScalarProperty Name="AutoAudit_CreatedBy" ColumnName="AutoAudit_CreatedBy" />
+                <ScalarProperty Name="AutoAudit_CreatedDate" ColumnName="AutoAudit_CreatedDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ExpenseTimeStamp" ColumnName="ExpenseTimeStamp" />
+                <ScalarProperty Name="ExpenseDetail" ColumnName="ExpenseDetail" />
+                <ScalarProperty Name="ExpenseTitle" ColumnName="ExpenseTitle" />
+                <ScalarProperty Name="ExpenseId" ColumnName="ExpenseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

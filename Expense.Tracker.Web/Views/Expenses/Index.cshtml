@@ -1,0 +1,134 @@
+﻿@model Expense.Tracker.Data.DataModels.ExpenseDictionary
+@{
+    ViewBag.Title = "Expenses";
+    ViewBag.PageDescription = "You can view and estimate your expenses such that you are in track of your spending";
+
+}
+
+<div class="portlet-body">
+
+
+    <div class="col-md-12 col-sm-12 margin-bottom-10" style="padding-left:0px; padding-right:14px">
+
+        <form action="/Expenses" class="form-search" method="get">
+            <div class="input-group pull-right">
+                <input class="table-group-action-input form-control input-inline input-small" id="SearchString" name="SearchString" placeholder="Find..." type="text" value="">
+                <div class="btn-group pull-right" style="margin-left:-1px">
+                    <input type="submit" value="Search" class="btn green table-group-action-submit">
+                    <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+
+                            <a href="javascript:void(0);" name="days" value="null" onclick="$(this).closest('form').submit();">
+                                All
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Expenses?days=7">Last 7 days</a>
+                        </li>
+                        <li>
+                            <a href="/Expenses?days=30">Last 1 month</a>
+                        </li>
+                        <li>
+                            <a href="/Expenses?days=365">Last year</a>
+                        </li> 
+                    </ul>
+                </div>
+            </div>
+        </form>        
+        <div id="sample_1_wrapper" class="dataTables_wrapper no-footer">
+            <div class="row">
+                <div class="col-md-9 col-sm-9 pull-right margin-bottom-10" style="padding-left:14px">
+                    <div class="btn-group pull-right">
+                        <a id="sample_editable_1_new" class="btn sbold green" href="/Expenses/Create">
+                            Add New
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="table-scrollable">
+            <table class="table table-bordered table-striped table-condensed flip-content">
+                <thead class="flip-content">
+                    <tr>
+                        <th style="text-align:center"> Expense by </th>
+                        <th style="text-align:center"> Expense head </th>
+                        <th style="text-align:center"> Expense details </th> 
+                        <th style="text-align:center"> Expense amount </th> 
+                        <th style="text-align:center"> Attachment </th> 
+                        <th style="text-align:center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var expense in Model.ExpenseData)
+                    {
+                        <tr>
+                            <td class="grid-middle-align" style="vertical-align: middle; text-align: center;">
+                                <div class="mt-author">
+                                    <div class="mt-avatar">
+                                        <img class="user-pic rounded" style="height:60px;" src='@(expense.LogoPath == null ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : expense.LogoPath)'>
+                                    </div>
+                                    <div class="mt-author-name">
+                                        <a href="javascript:;" class="font-blue-madison">@expense.UserName</a>
+                                    </div>
+                                    <div class="mt-author-datetime font-grey-mint">@expense.ExpenseTimestamp</div>
+                                </div>
+                            </td>
+
+
+                            <td style="vertical-align: middle; text-align: center; word-break:break-all;">
+                                @expense.ExpenseHead
+                            </td>
+                            <td style="vertical-align: middle; text-align: center; word-break:break-all;">
+                                @expense.ExpenseDetail
+                            </td> 
+                            <td style="vertical-align: middle; text-align: center; word-break:break-all;">
+                                $ @expense.ExpenseAmount
+                            </td> 
+                            <td style="vertical-align: middle; text-align: center; word-break:break-all;">
+                               @if(expense.Attachment == null)
+                               {
+                                   <span class="label label-default">No attachment</span>
+                               }
+                               else
+                               {
+                                   <a href="@expense.Attachment" class="btn btn-info">Download attachment</a>
+                               }
+                            </td> 
+                            <td class="grid-middle-align" style="vertical-align: middle; text-align: center;">
+                                <a class="btn btn-outline green filter-submit margin-bottom" href="/Expenses/Edit?expenseId=@expense.ExpenseId">Edit</a>
+
+                            </td>
+                        </tr>
+                    }
+                    
+                    
+                </tbody>
+            </table>
+
+        </div>
+
+        
+    </div>
+    <div class="row">
+        <div class="col-md-6"> </div>
+        <div class="col-md-6">
+            <div class="well">
+                <div class="row static-info align-reverse">
+                    <div class="col-md-8 name"> Total Expense: </div>
+                    <div class="col-md-3 value">$ @Model.ExpenseTotal </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+</div>
+

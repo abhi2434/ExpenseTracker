@@ -1,0 +1,52 @@
+﻿
+
+@if (TempData["ErrorReason"] == "Unauthorized")
+{
+
+    ViewBag.Title = "403 - Access denied";
+    ViewBag.PageDescription = "Reason : You do not have permission to access this resource. Either your role does not have previledge to access this url or you do not have access to the data.";
+
+
+    <div class="row">
+        <div class="col-md-12 page-404-3">
+            <div class="number font-red"> Oops! You do not have permission to access the requested resource. </div>
+            <div class="details">
+                <p>
+                    <a href="/"> Return home </a> or try the search bar below.
+                </p>
+                <p>Here are a few ideas:</p>
+                <div class="note note-warning">Please ask the site admin to give you access.</div>
+                <p>If you have different account, <a href="javascript:document.getElementById('logoutForm').submit()">sign out</a> and <strong>sign in</strong> with that account.</p>
+                <form action="#">
+                    <div class="input-group input-medium">
+                        <input type="text" id="SearchString" name="SearchString" class="form-control" placeholder="keyword...">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn green">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <!-- /input-group -->
+                </form>
+                <br />
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        Here are few ideas to fix the issue:
+                    </div>
+                    <div class="panel-body">
+                       
+                        <ol>
+                            <li>Please ask the site admin to give you access.</li>
+                            <li>If you have different account, <a href="javascript:">sign out</a> and <strong>sign in</strong> with that account.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+}
+<a href="/" class="btn btn-danger"> Return back to home </a>
+
+<div class="clearfix"></div>
+

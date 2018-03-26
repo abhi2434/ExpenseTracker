@@ -1,0 +1,55 @@
+/* here you can put your own css to customize and override the theme */
+@import "bootstrap.min.css";
+
+
+.row {
+    margin-bottom:0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.page-content-white .page-title {
+   
+}
+ 
+
+
+.portlet  {
+    margin-top:10px;
+}
+/*Value Mapping CSS*/
+  .text-center {
+        text-align:center;
+    }
+
+    .vmData {
+       
+        border: 1px solid #E7ECF1;
+    }
+
+    .vmInternal {
+        margin-top:15px;
+         margin-bottom:15px
+    }
+
+     .vmTop{
+        margin-top:23px;
+    }
+     
+
+     .tri-state{
+         width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        background-color: #fff;
+        border: 1px solid #c2cad8;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+     }
+
+     .button{
+         margin-top:70px;
+     }

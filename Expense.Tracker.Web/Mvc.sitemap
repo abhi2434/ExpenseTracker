@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Dashboard" controller="Dashboard" action="Index">
+    <mvcSiteMapNode title="Administration" controller="Administration" action="Index">
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Expense Manager" controller="Expenses" action="Index">
+      <mvcSiteMapNode title="Create" controller="Expenses" action="Create">
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Edit" controller="Expenses" action="Edit">
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Budget Control" controller="Budget" action="Index">
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Profile" controller="Profile" action="Index">
+    </mvcSiteMapNode>
+  </mvcSiteMapNode>
+
+</mvcSiteMap>

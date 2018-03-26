@@ -1,0 +1,91 @@
+﻿@model Exception
+<link href="~/Content/themes30/pages/css/error.min.css" rel="stylesheet" />
+@if (TempData["ErrorReason"] == "Unauthorized")
+{
+
+    ViewBag.Title = "403 - Access denied";
+    ViewBag.PageDescription = "Reason : You do not have permission to access this resource. Either your role does not have previledge to access this url or you do not have access to the data.";
+
+
+    <div class="row">
+        <div class="col-md-12 page-404-3">
+            <div class="number font-green"> - </div>
+            <div class="details">
+                <h3>Oops! permission to access missing.</h3>
+                <p>
+                    Reason : You do not have permission to access this resource.
+                    <br>
+                    <a href="index.html"> Return home </a> or try the search bar below.
+                </p>
+                <p>Here are a few ideas:</p>
+                <p>Please ask the site admin to give you access.</p>
+                <p>If you have different account, <a href="javascript:document.getElementById('logoutForm').submit()">sign out</a> and <strong>sign in</strong> with that account.</p>
+                <form action="@Url.Action("Index", "Organization")">
+                    <div class="input-group input-medium">
+                        <input type="text" id="SearchString" name="SearchString" class="form-control" placeholder="keyword...">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn green">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <!-- /input-group -->
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Here are a few ideas:
+            </div>
+            <div class="panel-body">
+                using (Html.BeginForm("LogOut", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "hide" }))
+                {@Html.AntiForgeryToken()}
+                <ol>
+                    <li>Please ask the site admin to give you access.</li>
+                    <li>If you have different account, <a href="javascript:document.getElementById('logoutForm').submit()">sign out</a> and <strong>sign in</strong> with that account.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+    @{
+        ViewBag.Title = "500 - Not Found";
+        ViewBag.PageDescription = "The resource you are looking for is either not available or the data is removed from the server. Please check the data and ensure you have clicked on a valid link.";
+    }
+        
+        <!-- END PAGE TITLE-->
+        <!-- END PAGE HEADER-->
+        <div class="row">
+            <div class="col-md-12 page-500">
+                <div class=" number font-red"> 500 </div>
+                <div class=" details">
+                    <h3>Oops! Something went wrong.</h3>
+                    <p>
+                        We are fixing it! Please come back in a while.
+                        <br />
+                    </p>
+                    <p>
+                        <a href="@Url.Action("Index", "Dashboard")" class="btn red btn-outline"> Return home </a>
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+        @if (Model != null)
+        {
+            <div class="row">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Technical details...</h3>
+                    </div>
+                    <div class="panel-body"> @Model.ToString() </div>
+                </div>
+            </div>
+        }
+
+ }

@@ -1,0 +1,232 @@
+﻿@{
+    Layout = null;
+}
+@model Expense.Tracker.Web.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+<!doctype html>
+<html>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Apple devices fullscreen -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Apple devices fullscreen -->
+    <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Expense Tracker - Admin - Login</title>
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="~/Content/themes30/global/plugins/select2/css/select2.min.css" rel="stylesheet" />
+
+    <link href="~/Content/themes30/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" />
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="~/Content/themes30/global/css/components.min.css" rel="stylesheet" />
+    <link href="~/Content/themes30/global/css/plugins.min.css" rel="stylesheet" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="~/Content/themes30/pages/css/login.min.css" rel="stylesheet" />
+
+    <link href="~/Content/themes30/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/themes30/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" />
+    <!-- jQuery -->
+    <script src="~/Content/Flat/js/jquery.min.js"></script>
+    <script src="~/Content/themes30/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <!-- Nice Scroll -->
+    <script src="~/Content/Flat/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- Validation -->
+    <script src="~/Content/Flat/js/plugins/validation/jquery.validate.min.js"></script>
+    <script src="~/Content/Flat/js/plugins/validation/additional-methods.min.js"></script>
+    <!-- icheck -->
+    <script src="~/Content/Flat/js/plugins/icheck/jquery.icheck.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Content/Flat/js/bootstrap.min.js"></script>
+    <script src="~/Content/Flat/js/eakroko.js"></script>
+    <script src="~/Content/themes30/global/plugins/bootstrap-toastr/toastr.min.js"></script>
+    <script src="~/Scripts/jquery.cookie.js"></script>
+    <!--[if lte IE 9]>
+        <script src="~/Content/Flat/js/plugins/placeholder/jquery.placeholder.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('input, textarea').placeholder();
+            });
+        </script>
+    <![endif]-->
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/Flat/img/favicon.ico" />
+    <!-- Apple devices Homescreen icon -->
+    <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
+    <style>
+        .box {
+            position: relative;
+        }
+
+        .box-content {
+            position: absolute;
+            bottom: 0;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body class="login">
+    <div class="wrapper">
+        <div class="login-body">
+            <div class="content" style="padding-top: 0px; margin-top: 150px; padding-bottom:60px">
+
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-validate login-form", @id = "login" }))
+                {
+                    <div class="create-account">
+                        <h3 style="color:#fff;">
+                            <img src="~/Content/Flat/img/logo.png" alt="" class='retina-ready'>
+                            Expense Tracker
+                        </h3>
+                    </div>
+
+                    <h3 class="form-title font-green" style="margin-top:70px; margin-bottom:30px">Sign In</h3>
+
+                    <div class="form-group">
+                        <div class="email controls">
+                            @Html.TextBoxFor(model => model.UserName, new { placeholder = "Email address", @class = "form-control", data_rule_required = "true", data_rule_email = "true" })
+                            @Html.ValidationMessageFor(model => model.UserName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pw controls">
+                            @Html.PasswordFor(model => model.Password, new { placeholder = "Password", @class = "form-control", data_rule_required = "true" })
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                    </div>
+                    <div class="submit">
+                        <input type="submit" value="Login" class="btn green uppercase" style="padding:8px; font-weight:bold" />
+                        @*<div class="remember" style="display:inline-block; margin-left:10px">
+                                <input type="checkbox" name="remember" data-skin="square" data-color="blue" id="Remember" />
+                                <label for="remember" style="color:#778; padding-top:10px">Remember</label>
+                            </div>*@
+                        <a href="javascript:void(0)" onclick="forgetPasswordScreen();" class="forget-password" style="text-decoration: none;">Forgot Password?</a>
+                    </div>
+
+                }
+
+                <div style="margin:0px; padding:0px; display:none" id="SignInForgot">
+                    <div class="create-account">
+                        <h3 style="color:#fff;">
+                            <img src="~/Content/Flat/img/logo.png" alt="" class='retina-ready'>
+                            Expense Tracker
+                        </h3>
+                    </div>
+
+
+
+                    <div class="form-actions" style="margin:0px; margin-top:70px; padding:0px">
+                        <h3 class="font-green">Forget Password ?</h3>
+                        <p> Enter your e-mail address below to reset your password. </p>                        <input type="email" placeholder="Email Id" class="form-control" style="margin-bottom:20px" id="ResetEmailId" />
+                        <a href="javascript:void(0)" onclick="invokeForgetPassword();" style="float:right;" class="btn green">SUBMIT</a>
+                        <a href="javascript:void(0)" onclick="backToSignIn()" class="btn green btn-outline" style="padding-top:12px;text-decoration:none;">BACK</a>
+                    </div>
+
+                    <div id="SuccessFailure" style="margin:10px 0px; padding: 0px 4px; background-color:#fff"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright"> @*<img src="/Content/Flat/img/logo.png" alt="">*@2017 © KMDW </div>
+  
+    <script type="text/javascript">
+
+        $("#login").submit(function () {
+            if ($("#Remember").is(":checked")) {
+                $.cookie("u_name", $("#UserName").val(), { expires: 7 });
+                $.cookie("remember", true, { expires: 7 });
+            }
+            else {
+                $.cookie("u_name", null);
+                $.cookie("remember", false);
+            }
+            return true;
+        });
+
+        $(".email").validate({
+            onkeyup: false,
+            onfocusout: true
+        });
+
+        $(document).ready(function () {
+            debugger;
+            var remember = $.cookie("remember");
+            if (remember && remember == "true") {
+                $("#UserName").val($.cookie("u_name"));
+                $("#Remember").prop("checked", true);
+            }
+            else {
+                $("#UserName").val("");
+                $("#Remember").prop("checked", false);
+            }
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-bottom-right",
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+             @if(ViewBag.ErrorMessage != null)
+            {
+                @:var message = '@ViewBag.ErrorMessage';
+
+                @:toastr.error(message, 'Sorry!');
+            }
+
+        });
+
+        
+
+        function backToSignIn() {
+            $("#login").show();
+            $("#SignInForgot").hide();
+        }
+        function forgetPasswordScreen() {
+            $("#login").hide();
+            $("#SignInForgot").show();
+        }
+
+        function invokeForgetPassword() {
+            var emailId = $("#ResetEmailId").val();
+
+            if (emailId) {
+                $.ajax({
+                    url: "/Account/ForgetPassword",
+                    method: 'POST',
+                    data: { email: emailId },
+                    success: function (e) {
+                        debugger;
+                        if (e.Errors)
+                            toastr.error(e.Errors[0], 'Failure notice!')
+                        else
+                            toastr.success('An email has been sent to your mailbox, please check to reset your password', 'Success!')
+                    },
+                    error: function () {
+
+                        toastr.error("We have faced an issue, please email us at support@insync.co.in to reset password", 'Sorry!');
+                    }
+                })
+            }
+            else {
+                toastr.warning("Please ensure you request with a valid email id", 'Validation!');
+            }
+        }
+
+    </script>
+</body>
+</html>

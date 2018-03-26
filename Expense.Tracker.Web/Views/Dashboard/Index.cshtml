@@ -1,0 +1,572 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    ViewBag.PageDescription = "You can view your entire business from the screen";
+}
+
+<div class="row widget-row">
+    <div class="col-md-3">
+        <!-- BEGIN WIDGET THUMB -->
+        <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+            <h4 class="widget-thumb-heading">Current Balance</h4>
+            <div class="widget-thumb-wrap">
+                <i class="widget-thumb-icon bg-green icon-bulb"></i>
+                <div class="widget-thumb-body">
+                    <span class="widget-thumb-subtitle">USD</span>
+                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="7,644">0</span>
+                </div>
+            </div>
+        </div>
+        <!-- END WIDGET THUMB -->
+    </div>
+    <div class="col-md-3">
+        <!-- BEGIN WIDGET THUMB -->
+        <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+            <h4 class="widget-thumb-heading">Weekly Budget</h4>
+            <div class="widget-thumb-wrap">
+                <i class="widget-thumb-icon bg-red icon-layers"></i>
+                <div class="widget-thumb-body">
+                    <span class="widget-thumb-subtitle">USD</span>
+                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="1,293">0</span>
+                </div>
+            </div>
+        </div>
+        <!-- END WIDGET THUMB -->
+    </div>
+    <div class="col-md-3">
+        <!-- BEGIN WIDGET THUMB -->
+        <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+            <h4 class="widget-thumb-heading">Biggest Expense</h4>
+            <div class="widget-thumb-wrap">
+                <i class="widget-thumb-icon bg-purple icon-screen-desktop"></i>
+                <div class="widget-thumb-body">
+                    <span class="widget-thumb-subtitle">USD</span>
+                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="815">0</span>
+                </div>
+            </div>
+        </div>
+        <!-- END WIDGET THUMB -->
+    </div>
+    <div class="col-md-3">
+        <!-- BEGIN WIDGET THUMB -->
+        <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+            <h4 class="widget-thumb-heading">Average Monthly</h4>
+            <div class="widget-thumb-wrap">
+                <i class="widget-thumb-icon bg-blue icon-bar-chart"></i>
+                <div class="widget-thumb-body">
+                    <span class="widget-thumb-subtitle">USD</span>
+                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="5,071">0</span>
+                </div>
+            </div>
+        </div>
+        <!-- END WIDGET THUMB -->
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-xs-12 col-sm-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject bold uppercase font-dark">Monthly spends</span>
+                    <span class="caption-helper">expense heads...</span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-circle btn-icon-only btn-default" href="#">
+                        <i class="icon-cloud-upload"></i>
+                    </a>
+                    <a class="btn btn-circle btn-icon-only btn-default" href="#">
+                        <i class="icon-wrench"></i>
+                    </a>
+                    <a class="btn btn-circle btn-icon-only btn-default" href="#">
+                        <i class="icon-trash"></i>
+                    </a>
+                    <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="portlet-body">
+                    <div class="row number-stats margin-bottom-30">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="stat-left">
+                                <div class="stat-chart">
+                                    <!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
+                                    <div id="sparkline_bar"><canvas width="113" height="55" style="display: inline-block; width: 113px; height: 55px; vertical-align: top;"></canvas></div>
+                                </div>
+                                <div class="stat-number">
+                                    <div class="title"> Total </div>
+                                    <div class="number"> 2460 </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="stat-right">
+                                <div class="stat-chart">
+                                    <!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
+                                    <div id="sparkline_bar2"><canvas width="107" height="55" style="display: inline-block; width: 107px; height: 55px; vertical-align: top;"></canvas></div>
+                                </div>
+                                <div class="stat-number">
+                                    <div class="title"> New </div>
+                                    <div class="number"> 719 </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-scrollable table-scrollable-borderless">
+                        <table class="table table-hover table-light">
+                            <thead>
+                                <tr class="uppercase">
+                                    <th colspan="2"> MEMBER </th>
+                                    <th> EXPENSE </th>
+                                    <th> CASES </th>
+                                    <th> CLOSED </th>
+                                    <th> RATE </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="fit">
+                                        <img class="user-pic rounded" src="~/content/themes30/pages/media/users/avatar4.jpg">
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="primary-link">Brain</a>
+                                    </td>
+                                    <td> $345 </td>
+                                    <td> 45 </td>
+                                    <td> 124 </td>
+                                    <td>
+                                        <span class="bold theme-font">80%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fit">
+                                        <img class="user-pic rounded" src="~/content/themes30/pages/media/users/avatar5.jpg">
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="primary-link">Nick</a>
+                                    </td>
+                                    <td> $560 </td>
+                                    <td> 12 </td>
+                                    <td> 24 </td>
+                                    <td>
+                                        <span class="bold theme-font">67%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fit">
+                                        <img class="user-pic rounded" src="~/content/themes30/pages/media/users/avatar6.jpg">
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="primary-link">Tim</a>
+                                    </td>
+                                    <td> $1,345 </td>
+                                    <td> 450 </td>
+                                    <td> 46 </td>
+                                    <td>
+                                        <span class="bold theme-font">98%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fit">
+                                        <img class="user-pic rounded" src="~/content/themes30/pages/media/users/avatar7.jpg">
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="primary-link">Tom</a>
+                                    </td>
+                                    <td> $645 </td>
+                                    <td> 50 </td>
+                                    <td> 89 </td>
+                                    <td>
+                                        <span class="bold theme-font">58%</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xs-12 col-sm-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption ">
+                    <span class="caption-subject font-dark bold uppercase">Feed</span>
+                    <span class="caption-helper">daily expenses...</span>
+                </div>
+                <div class="actions">
+                    <div class="btn-group">
+                        <a class="btn green-haze btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            Actions
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="javascript:;"> Budget</a>
+                            </li>
+                            <li class="divider"> </li>
+                            <li>
+                                <a href="javascript:;"> Average Spends </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Expenses</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;"> Priority </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="scroller" style="height: 339px;" data-always-visible="1" data-rail-visible="0">
+                    <ul class="feeds">
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-success">
+                                            <i class="fa fa-bell-o"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc">
+                                            Spent $200 on procurement of monitor.
+                                            <span class="label label-sm label-info">
+                                                Check details
+                                                <i class="fa fa-share"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> Just now </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <div class="col1">
+                                    <div class="cont">
+                                        <div class="cont-col1">
+                                            <div class="label label-sm label-success">
+                                                <i class="fa fa-bell-o"></i>
+                                            </div>
+                                        </div>
+                                        <div class="cont-col2">
+                                            <div class="desc"> Received delivery of Monitor! </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2">
+                                    <div class="date"> 20 mins </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-danger">
+                                            <i class="fa fa-bolt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> Spent $105 on social advertisement. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 24 mins </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-info">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> Accpeted balance sheet of daily expenditure by admin. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 30 mins </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-success">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> Application recieved to deliver monitor. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 40 mins </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-warning">
+                                            <i class="fa fa-plus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> Raised budget by $2000 which can be spent on expenses. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 1.5 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-success">
+                                            <i class="fa fa-bell-o"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc">
+                                            Web server hardware needs to be upgraded.
+                                            <span class="label label-sm label-default "> Overdue </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 2 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-default">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> New order received, a 2 wheeler for Mark. Please take care of it. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 3 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-warning">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> New order received a sunglass for Brian. Please take care of it. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 5 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-info">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> New order received an umbrella for Smith. Please take care of it. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 18 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-default">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> New order received. Please take care of it. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 21 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-info">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> New order received. Please take care of it. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 22 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-default">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> New order received. Please take care of it. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 21 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-info">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> New order received. Please take care of it. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 22 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-default">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> New order received. Please take care of it. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 21 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-info">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> New order received. Please take care of it. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 22 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-default">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> New order received. Please take care of it. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 21 hours </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm label-info">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc"> New order received. Please take care of it. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date"> 22 hours </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/themes30/global/plugins/counterup/jquery.waypoints.min.js"></script>
+<script src="~/Content/themes30/global/plugins/counterup/jquery.counterup.min.js"></script>
+<script src="~/Content/Flat/js/plugins/sparklines/jquery.sparklines.min.js"></script>
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+        if (!jQuery().sparkline) {
+            return;
+        }
+        $("#sparkline_bar").sparkline([8, 9, 10, 11, 10, 10, 12, 10, 10, 11, 9, 12, 11, 10, 9, 11, 13, 13, 12], {
+            type: 'bar',
+            width: '100',
+            barWidth: 5,
+            height: '55',
+            barColor: '#f36a5b',
+            negBarColor: '#e02222'
+        });
+
+        $("#sparkline_bar2").sparkline([9, 11, 12, 13, 12, 13, 10, 14, 13, 11, 11, 12, 11, 11, 10, 12, 11, 10], {
+            type: 'bar',
+            width: '100',
+            barWidth: 5,
+            height: '55',
+            barColor: '#5c9bd1',
+            negBarColor: '#e02222'
+        }); 
+    });
+</script>

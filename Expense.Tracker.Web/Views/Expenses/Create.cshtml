@@ -1,0 +1,125 @@
+﻿@model Expense.Tracker.Data.EntityModel.Expens
+@{
+    ViewBag.Title = "Create";
+    ViewBag.PageDescription = "You can create new expenses such that you are in track of your spending";
+
+} 
+<div class="portlet-body form">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <input type="hidden" id="AttachmentPath" name="AttachmentPath" />
+        <div class="form-body">
+
+            <div class="form-group form-md-line-input form-md-floating-label">
+                <label for="UserId">Entered by</label>
+                @Html.DropDownListFor(m => m.UserId,
+                                new SelectList(ViewBag.Users,
+                                            "UserId", "UserFullName"))
+                <span class="help-block">Expense made by...</span>
+            </div> 
+
+            <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control" id="ExpenseTitle" name="ExpenseTitle" />
+                <label for="ExpenseTitle">Expense head</label>
+                @Html.ValidationMessageFor(model => model.ExpenseTitle, null, new { @class = "help-block" })
+                <span class="help-block">Specify the title of the expense which is made...</span>
+            </div>
+            <div class="form-group form-md-line-input form-md-floating-label">
+                <textarea class="form-control" id="ExpenseDetail"  name="ExpenseDetail" rows="3"></textarea> 
+                <label for="ExpenseDetail">Expense Details</label>
+                @Html.ValidationMessageFor(model => model.ExpenseDetail, null, new { @class = "help-block" })
+                <span class="help-block">Describe the details of the expense...</span>
+            </div>
+            <div class="form-group form-md-line-input form-md-floating-label">
+                <label for="ExpenseTimeStamp">Expense timestamp</label>
+                <input type="date" class="form-control" id="ExpenseTimeStamp" name="ExpenseTimeStamp"/> 
+                @Html.ValidationMessageFor(model => model.ExpenseTimeStamp, null, new { @class = "help-block" })
+                <span class="help-block">Specify the timestamp when the expense is made...</span>
+            </div> 
+            <div class="form-group form-md-line-input form-md-floating-label">
+                <label for="ExpenseAmount">Expense Amount</label>
+                <input type="number" class="form-control" id="ExpenseAmount" name="ExpenseAmount" />
+                @Html.ValidationMessageFor(model => model.ExpenseAmount, null, new { @class = "help-block" })
+                <span class="help-block">Expense value...</span>
+            </div> 
+            
+            <div>
+                <div>
+                    <form method="post" id="fupload" name="fupload">
+                        <span class="btn btn-success fileinput-button" style="margin:0px 0px 10px 0px">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Select attachment</span>
+                            <!-- The file input field used as target for the file upload widget -->
+                            <input id="fileupload" type="file" name="files" />
+
+                        </span>
+
+                        <!-- The global progress bar -->
+                        <div id="progress" class="progress" style="display:none;">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <!-- The container for the uploaded files -->
+                        <div id="files" class="files"></div>
+                    </form>
+                    <span id="Attachment" class="label label-info" ></span>
+                    <a href="javascript:removeImage();" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                </div>
+            </div>
+
+            <div class="form-actions noborder">
+                <input type="submit" value="Create" class="btn blue" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class="btn default" })
+            </div>
+        </div>
+    }
+</div>
+
+
+<script src="/Scripts/jquery.ui.widget.js"></script>
+<script src="/Scripts/jquery.iframe-transport.js"></script>
+<script src="/Scripts/jquery.fileupload.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#UserId").select2();
+        $('#fileupload').fileupload({
+            url: '/Expenses/FileUpload',
+            dataType: 'json', 
+            add: function (e, data) {
+                $('#progress').show();
+                //data.id = $('#userId').val();
+                data.submit();
+            },
+            done: function (e, data) {
+                var result = data.result;
+                if (result != '') {
+                    $('#AttachmentPath').val(result);
+                    $('#Attachment').html(result.replace(/^.*[\\\/]/, ''))
+                }
+                $('#progress').hide();
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .progress-bar').css(
+                    'width',
+                    progress + '%'
+                );
+            }
+        });
+
+    });
+    function removeImage() {
+        $.ajax({
+            url: '/Expenses/RemoveFile',
+            datatype: 'json',
+            data: { filePath: $('#AttachmentPath').val() },
+            type: 'POST',
+            success: function (data) {
+                $('#AttachmentPath').val('');
+            }
+        });
+    }
+</script>
