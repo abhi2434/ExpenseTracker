@@ -36,7 +36,7 @@ namespace Expense.Tracker.Web.Models.Bot
                 Title = "Authentication Required"
             };
             cardButtons.Add(plButton);
-            SigninCard plCard = new SigninCard("Please login to APPSeCONNECT", new List<CardAction>() { plButton });
+            SigninCard plCard = new SigninCard("Please login to AEX", new List<CardAction>() { plButton });
             Attachment plAttachment = plCard.ToAttachment();
             replyToConversation.Attachments.Add(plAttachment);
             await loginConnector.Conversations.SendToConversationAsync(replyToConversation); 

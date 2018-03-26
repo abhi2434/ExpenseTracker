@@ -100,7 +100,7 @@ namespace Expense.Tracker.Web.Controllers.Base
         //    if (feature != null)
         //    {
         //        if (!string.IsNullOrWhiteSpace(feature.HelpUrl))
-        //            ViewBag.CurrentHelpUrl = Path.Combine("http://support.appseconnect.com/support/solutions", feature.HelpUrl);
+        //            ViewBag.CurrentHelpUrl = Path.Combine("http://support.adsd.com/support/solutions", feature.HelpUrl);
         //        return true;
         //    }
         //    return false;

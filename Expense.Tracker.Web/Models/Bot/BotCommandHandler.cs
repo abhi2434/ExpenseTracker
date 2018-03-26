@@ -28,7 +28,7 @@ namespace Expense.Tracker.Web.Models.Bot
             }
             else if (this.AskIntroMessages(activity.Text))
             {
-                strReplyMessage.Append($"I am **APPSeCONNECT** BOT. I know about APPSeCONNECT, an integration platform which lets one or more application to get connected. I am here to help you on your need about the platform. Let me know how can I help you {userName}, I will try to answer.");
+                strReplyMessage.Append($"I am **ABC** BOT. I know about APPSeCONNECT, an integration platform which lets one or more application to get connected. I am here to help you on your need about the platform. Let me know how can I help you {userName}, I will try to answer.");
             }
             else if(this.AskThankMessage(activity.Text))
             {

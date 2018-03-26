@@ -14,21 +14,21 @@ using Microsoft.WindowsAzure.Storage.Blob;
 namespace Expense.Tracker.Web.Models
 {
     /// <summary>
-    /// Constants that define the APPSeCONNECT
+    /// Constants that define the Expensify
     /// </summary>
     public static class IvrOptions
     {
-        internal const string WelcomeMessage = "Hello, thank you for calling APPSeCONNECT Team.";
+        internal const string WelcomeMessage = "Hello, thank you for calling Expensify Team.";
         internal const string MainMenuPrompt = "If you are a new client press 1, for technical support press 2, if you need information about our recent payment updates press 3, to hear more about the company press 4. To repeat the options press 5.";
         internal const string NewClientPrompt = "To check our latest offer press 1, to talk to a technical consultant press 2. Press the hash key to return to the main menu";
         internal const string SupportPrompt = "To check our current outages press 1, to contact the technical support consultant press 2. Press the hash key to return to the main menu";
         internal const string PaymentPrompt = "To get the payment details press 1, press 2 if your payment is not visible in the system. Press the hash key to return to the main menu";
-        internal const string MoreInfoPrompt = "APPSeCONNECT is a leading integration software that is used all over the world. We provide end to end business solutions around the world where our hybrid solution integrates two or more applications and provide complex solutions for your business. ";
+        internal const string MoreInfoPrompt = "Expensify is a leading integration software that is used all over the world. We provide end to end business solutions around the world where our hybrid solution integrates two or more applications and provide complex solutions for your business. ";
         internal const string NoConsultants = "Unfortunately there are no consultants available at this moment. Please leave your name, and a brief message after the signal. You can press the hash key when finished. We will call you as soon as possible.";
         internal const string Ending = "Thank you for leaving the message, goodbye";
         internal const string Offer = "You can sign up for a 30 days free trial where we will demonstrate how synchronization works in your application, or you can go for subscription model where we will implement your business process through our solution";
         internal const string CurrentOutages = "There is currently 1 outage in Indian data centers, we are working on fixing the issue";
-        internal const string PaymentDetailsMessage = "You should do the wire transfer to our account number 3983815 and then either call us or send an email to support@appseconnect.com with your transaction details to activate your subscription.";
+        internal const string PaymentDetailsMessage = "You should do the wire transfer to our account number 3983815 and then either call us or send an email to support@Expensify.com with your transaction details to activate your subscription.";
     }
 
     /// <summary>

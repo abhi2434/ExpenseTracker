@@ -52,7 +52,7 @@ namespace Expense.Tracker.Web.Controllers.BOT
                     string result = string.Empty;
                     ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
 
-                    Activity replyMessage = activity.CreateReply("APPSeCONNECT is typing...");
+                    Activity replyMessage = activity.CreateReply("Expensify is typing...");
                     replyMessage.Type = ActivityTypes.Typing;
                     await this.SendTypingResponse(connector, replyMessage);
 
@@ -127,7 +127,7 @@ namespace Expense.Tracker.Web.Controllers.BOT
             }
             else if (message.Type == ActivityTypes.ConversationUpdate)
             {
-                var reply = message.CreateReply("Thank you for adding me to your contact list. I am APPSeCONNECT and I will help you to learn more about us. Ping me when you are free.");
+                var reply = message.CreateReply("Thank you for adding me to your contact list. I am Expensify and I will help you to learn more about us. Ping me when you are free.");
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }
             else if (message.Type == ActivityTypes.ContactRelationUpdate)

@@ -25,7 +25,7 @@ namespace Expense.Tracker.Web.Controllers.BOT
         }
 
         /// <summary>
-        /// This is the callback url for APPSECONNECT
+        /// This is the callback url for adec
         /// </summary>
         /// <returns></returns>
         [Route("callback")]

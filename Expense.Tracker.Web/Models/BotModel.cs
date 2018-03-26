@@ -14,7 +14,7 @@ using System.Web;
 namespace Expense.Tracker.Web.Models
 {
     /// <summary>
-    /// Bot Model for APPSECONNECT
+    /// Bot Model for Expensify
     /// </summary>
     [LuisModel("f6e025e8-5d7a-45af-865b-65eb52a1eb0b", "8a2b0aa13fb34cec9430833e5a4b6122")]
     [Serializable]
@@ -69,7 +69,7 @@ namespace Expense.Tracker.Web.Models
             object subscription = null; // this.DataFactory.SubscriptionUtils.GetCurrentSubscription(this.Email);
             if (subscription == null)
             {
-                await context.PostAsync($"Well, we have a very attractive offer for you. You can go with our subscription model to save yourself a lot of money. Please refer [our pricing](http://www.appseconnect.com/pricing/) for more details. You can also drop us a mail at sales@insync.co.in for more attractive deals.");
+                await context.PostAsync($"Well, we have a very attractive offer for you. You can go with our subscription model to save yourself a lot of money. Please refer [our pricing](http://www.Expensify.com/pricing/) for more details. You can also drop us a mail at sales@insync.co.in for more attractive deals.");
             }
             else
             {
@@ -83,7 +83,7 @@ namespace Expense.Tracker.Web.Models
                 //        await context.PostAsync($"Hey {this.UserName}, your subscription is going to expire on {subscription.SubscriptionExpiryDate}, please renew your subscription before that to continue with us. :)");
                 //    }
                 //    else
-                //        await context.PostAsync($"Hey {this.UserName}, you have an active subscription of {subscription.Plan.PlanName}. Enjoy using **APPSeCONNECT**. You can contact our [support team](support@appseconnect.com) for any issues.");
+                //        await context.PostAsync($"Hey {this.UserName}, you have an active subscription of {subscription.Plan.PlanName}. Enjoy using **Expensify**. You can contact our [support team](support@Expensify.com) for any issues.");
                 //}
             }
 
@@ -176,7 +176,7 @@ namespace Expense.Tracker.Web.Models
                 //var subscription = this.DataFactory.SubscriptionUtils.GetCurrentSubscription(this.Email);
                 //if (subscription == null)
                 //{
-                    await context.PostAsync($"Well, we have a very attractive offer for you. You can go with our subscription model to save yourself a lot of money. Please refer [our pricing](http://www.appseconnect.com/pricing/) for more details. You can also drop us a mail at sales@insync.co.in for more attractive deals.");
+                    await context.PostAsync($"Well, we have a very attractive offer for you. You can go with our subscription model to save yourself a lot of money. Please refer [our pricing](http://www.Expensify.com/pricing/) for more details. You can also drop us a mail at sales@insync.co.in for more attractive deals.");
                 //}
                 //else
                 //{
@@ -188,8 +188,8 @@ namespace Expense.Tracker.Web.Models
                 //    }
                 //    else
                 //    {
-                //        await context.PostAsync($"Hi {this.UserName}, you have an active subscription of {subscription.Plan.PlanName}. Enjoy using **APPSeCONNECT**. You can contact our [support team](support@appseconnect.com) for any issues.");
-                //        //answer = "Hi {this.UserName}, you have an active subscription of {subscription.Plan.PlanName}. Enjoy using **APPSeCONNECT**. You can contact our [support team](support@appseconnect.com) for any issues.";
+                //        await context.PostAsync($"Hi {this.UserName}, you have an active subscription of {subscription.Plan.PlanName}. Enjoy using **Expensify**. You can contact our [support team](support@Expensify.com) for any issues.");
+                //        //answer = "Hi {this.UserName}, you have an active subscription of {subscription.Plan.PlanName}. Enjoy using **Expensify**. You can contact our [support team](support@Expensify.com) for any issues.";
                 //    }
 
                 //}
@@ -320,7 +320,7 @@ namespace Expense.Tracker.Web.Models
         [LuisIntent("")]
         public async System.Threading.Tasks.Task None(IDialogContext context, LuisResult result)
         {
-            string message = $"I am not a superhero {this.UserName} and sometimes there are things which I don't know. Can you reframe the sentence and try again for me please.\n Or else, you can check [faqs](http://www.appseconnect.com/faqs/) too.";
+            string message = $"I am not a superhero {this.UserName} and sometimes there are things which I don't know. Can you reframe the sentence and try again for me please.\n Or else, you can check [faqs](http://www.Expensify.com/faqs/) too.";
 
             var answerfromWords = this.CheckForWords(result.Query);
             if (string.IsNullOrWhiteSpace(answerfromWords))
@@ -334,7 +334,7 @@ namespace Expense.Tracker.Web.Models
         [LuisIntent("Reality")]
         public async System.Threading.Tasks.Task Reality(IDialogContext context, LuisResult result)
         {
-            string message = $"What do you think? Actually I am a proprietary of InSync and built to help you regarding APPSeCONNECT. I am very excited to get in touch with you and willing to help you as much as I can. ";
+            string message = $"What do you think? Actually I am a proprietary of InSync and built to help you regarding Expensify. I am very excited to get in touch with you and willing to help you as much as I can. ";
 
             await context.PostAsync(message);
             context.Wait(MessageReceived);
@@ -342,7 +342,7 @@ namespace Expense.Tracker.Web.Models
         [LuisIntent("Name")]
         public async System.Threading.Tasks.Task Name(IDialogContext context, LuisResult result)
         {
-            string message = $"Oh, I am honored to be part of APPSeCONNECT and hence I am named as **APPSeCONNECT BOT**.";
+            string message = $"Oh, I am honored to be part of Expensify and hence I am named as **Expensify BOT**.";
 
             await context.PostAsync(message);
             context.Wait(MessageReceived);

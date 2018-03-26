@@ -131,7 +131,7 @@ namespace Expense.Tracker.Web
        
             bundles.UseCdn = true;
             // Global CSS Bundle
-            bundles.Add(new StyleBundle("~/bundles/appseconnect/global/css")
+            bundles.Add(new StyleBundle("~/bundles/Expensify/global/css")
                     .Include("~/Content/themes30/global/plugins/font-awesome/css/font-awesome.css")
                     .Include("~/Content/themes30/global/plugins/simple-line-icons/simple-line-icons.min.css")
                     .Include("~/Content/themes30/global/plugins/bootstrap/css/bootstrap.min.css")

@@ -97,13 +97,13 @@ namespace Expense.Tracker.Web.Models.Bot
                 switch (currentState)
                 {
                     case 0: // Fresh user
-                        strReplyMessage.Append($"Hello, I am **APPSeCONNECT** Bot");
+                        strReplyMessage.Append($"Hello, I am **ABC** Bot");
                         strReplyMessage.Append($"\n");
                         strReplyMessage.Append($"You can say anything");
                         strReplyMessage.Append($"\n");
                         strReplyMessage.Append($"to me and I will check whether I can respond");
                         strReplyMessage.Append($"\n\n");
-                        strReplyMessage.Append($"Lets start with whether you are an existing user of APPSeCONNECT or not?");
+                        strReplyMessage.Append($"Lets start with whether you are an existing user of ABC or not?");
                         this.State = 1;
                         break;
                     case 1:
@@ -133,7 +133,7 @@ namespace Expense.Tracker.Web.Models.Bot
                             }
                             else
                             {
-                                strReplyMessage.Append("Sorry! You are currently in a restricted zone. Are you really an existing user of **APPSeCONNECT**?");
+                                strReplyMessage.Append("Sorry! You are currently in a restricted zone. Are you really an existing user of **ABC**?");
                                 this.State = 1;
                             }
                         }
